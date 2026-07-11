@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING
 
 from py_mini_racer import MiniRacer
 from py_mini_racer._objects import JSMappedObject
-from py_mini_racer._types import JSEvalException
 
 from graph_sitter.core.external.language_engine import LanguageEngine
 from graph_sitter.shared.logging.get_logger import get_logger
@@ -153,7 +152,7 @@ class V8TypescriptEngine(TypescriptEngine):
         file_path = os.path.join(self.repo_path, node.filepath)
         try:
             return self.ctx.eval(f"type_script_analyzer.getFunctionAtPosition('{file_path}', {node.start_byte})")
-        except JSEvalException as e:
+        except Exception as e:
             return None
 
 
